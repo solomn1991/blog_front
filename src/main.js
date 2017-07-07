@@ -6,10 +6,17 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-
+// jquery
 import $ from 'jquery'
+
+// bootstrap
 import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/js/bootstrap.js'
+
+// adminlte
+import 'admin-lte/dist/css/AdminLTE.css'
+import 'admin-lte/dist/css/skins/_all-skins.css'
+import 'admin-lte/dist/js/app.js'
 
 /* eslint-disable no-new */
 new Vue({
