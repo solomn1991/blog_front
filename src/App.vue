@@ -1,10 +1,12 @@
 <template>
-  <body id="app" class="skin-blue-light layout-top-nav">
+  <div id="app" class="skin-blue-light" style="min-height: 100%;">
+
     <router-view></router-view>
-  </body>
+  </div>
 </template>
 
 <script>
+
 export default {
   name: 'app'
 }
@@ -19,4 +21,5 @@ export default {
   /*color: #2c3e50;*/
   /*margin-top: 60px;*/
 /*}*/
+
 </style>
