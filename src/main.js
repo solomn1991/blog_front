@@ -21,18 +21,39 @@ import 'admin-lte/dist/css/skins/_all-skins.css'
 import 'admin-lte/dist/js/app.js'
 
 
-// import 'font-awesome-webpack/'
 
 require("font-awesome-webpack");
 
 import Vuex from 'vuex'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+  state:{
+    is_login:false
+  },
+  mutations:{
+    login(state){
+      state.is_login=true;
+    },
+    logout(state){
+      state.is_login=false;
+    }
+  }
+
+})
+
+
+
 Vue.config.devtools=true
+
+
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: { App },

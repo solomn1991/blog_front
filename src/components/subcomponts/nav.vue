@@ -104,9 +104,13 @@
 
   export default{
       name:"nav",
+      computed:{
+          is_login(){
+              return this.$store.state.is_login;
+          }
+      },
       data:function () {
           return {
-              is_login:false,
               user:{
                   username:"",
                   password:""
@@ -128,11 +132,14 @@
 
             var result = response.body;
             if (result.login_success){
-              this.is_login = true;
+//              this.is_login = true;
               this.user.username = result.user.username;
               $("#login_box_modal").modal("hide");
+              console.log("登录成功");
 
-              //todo emit login
+
+              //emit login
+              this.$store.commit("login")
             }else{
                 if (hint){
                   this.alert_message=result.reason;
@@ -158,7 +165,8 @@
               this.is_login = false;
               console.log("登出成功")
 
-              //todo(emit logout)
+              //emit logout
+              this.$store.commit("logout")
             }
 
 
