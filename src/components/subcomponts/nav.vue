@@ -73,11 +73,7 @@
                 </div>
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox"> Remember me
-                      </label>
-                    </div>
+                    <span  style="color: red">{{alert_message}}</span>
                   </div>
                 </div>
               </div>
@@ -102,6 +98,10 @@
 
 
 <script>
+  import Vue from 'vue'
+  import VueResource from 'vue-resource'
+  Vue.use(VueResource)
+
   export default{
       name:"nav",
       data:function () {
@@ -110,11 +110,70 @@
               user:{
                   username:"",
                   password:""
-              }
+              },
+              alert_message:"",
+              result:null,
+
           }
       },
       methods:{
-        login:function () {}
+        reset_alertmessage:function () {
+            this.alert_message = "";
+        },
+
+        login:function (hint) {
+          this.$http.post('/api/login',{username:this.user.username,password:this.user.password}).then(response => {
+            var component = this;
+
+
+            var result = response.body;
+            if (result.login_success){
+              this.is_login = true;
+              this.user.username = result.user.username;
+              $("#login_box_modal").modal("hide");
+
+              //todo emit login
+            }else{
+                if (hint){
+                  this.alert_message=result.reason;
+                  setTimeout(this.reset_alertmessage,3000);
+                }
+
+            }
+
+            //this.someData = response.body;
+
+          }, response => {
+            // error callback
+            console.log(response)
+          });
+
+        },
+
+        logout:function () {
+          this.$http.post('/api/logout').then(response => {
+
+            var result = response.body;
+            if (!result.is_login){
+              this.is_login = false;
+              console.log("登出成功")
+
+              //todo(emit logout)
+            }
+
+
+
+            //this.someData = response.body;
+
+          }, response => {
+            // error callback
+          });
+
+        }
+      },
+
+      created:function () {
+        this.login()
       }
   }
 </script>

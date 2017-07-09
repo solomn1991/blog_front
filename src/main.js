@@ -28,6 +28,7 @@ require("font-awesome-webpack");
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
+Vue.config.devtools=true
 
 /* eslint-disable no-new */
 new Vue({
