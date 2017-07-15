@@ -22,10 +22,8 @@ import 'admin-lte/dist/js/app.js'
 
 
 
-require("font-awesome-webpack");
 
 import Vuex from 'vuex'
-
 Vue.use(Vuex);
 
 const store = new Vuex.Store({

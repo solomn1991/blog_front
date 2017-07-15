@@ -132,7 +132,6 @@
 
             var result = response.body;
             if (result.login_success){
-//              this.is_login = true;
               this.user.username = result.user.username;
               $("#login_box_modal").modal("hide");
               console.log("登录成功");

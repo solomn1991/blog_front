@@ -1,6 +1,5 @@
 <template>
   <div id="app" class="skin-blue-light" style="min-height: 100%;">
-
     <router-view></router-view>
   </div>
 </template>

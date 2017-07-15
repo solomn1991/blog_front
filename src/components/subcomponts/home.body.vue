@@ -10,7 +10,8 @@
 
       <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
         <div class="list-group">
-          <a href="/#/editor" class="list-group-item" v-if="is_login">写博客</a>
+          <a href="/#/new/passage" class="list-group-item" v-if="is_login">写博客</a>
+          <a href="/#/mypassages" class="list-group-item" v-if="is_login">我的文章</a>
           <a href="#" class="list-group-item">...</a>
         </div>
       </div><!--/.sidebar-offcanvas-->
