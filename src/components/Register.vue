@@ -73,16 +73,16 @@
 
         register:function () {
           if (this.validate()){
-            info = {
+            var info = {
               username:this.reg_username,
-              email:this.email,
-              password:this.password
+              email:this.reg_email,
+              password:this.reg_password
             }
-            this.$http.post('/register', info).then(function (response) {
+            this.$http.post('/api/register', info).then(function (response) {
               if (response.body.register_success==true){
-                this.$http.post('/login',{username:this.username,password:this.password}).then(
+                this.$http.post('/api/login',{username:info.username,password:info.password}).then(
                   function(response){
-                    location="/";
+                    location="/#/";
                   },
                   function (err) {
 
@@ -90,7 +90,7 @@
                 )
 
               } else{
-                error_message = esponse.body.message;
+                var error_message = response.body.message;
                 alert(error_message);
                 this.reset_box();
 

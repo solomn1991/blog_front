@@ -18,7 +18,7 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
-            <a href="#" class="list-group-item">...</a>
+            <a :href="'/#/passage/edit/'+$route.params.id" class="list-group-item" v-if="">更改</a>
             <a href="#" class="list-group-item">...</a>
           </div>
         </div><!--/.sidebar-offcanvas-->
@@ -40,7 +40,8 @@
     },
     data:function () {
       return {
-          title:"editor"
+          passage:null,
+          title:"文章"
       }
     },
     components:{
@@ -52,6 +53,7 @@
         if (result.fetch_success){
             this.title = result.passage.title;
             var passage_ele = $(result.passage.content);
+            this.passage=result.passage
             $('#passage').append(passage_ele)
         }else{
 

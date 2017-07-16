@@ -12,8 +12,6 @@
     <hr>
 
 
-
-
   </div>
 </template>
 
@@ -50,7 +48,10 @@
           autoGrow_onStartup:true,
           autoGrow_bottomSpace:50
         });
-        console.log(this.content)
+        var comp = this;
+        this.instance.on('instanceReady',function () {
+          comp.setContent(comp.content)
+        })
 
       },
       computed:{
@@ -58,12 +59,7 @@
             return CKEDITOR.instances.editor;
           },
       },
-      watch:{
-          content: function (val) {
-              this.setContent(val);
 
-          }
-      }
 
 
   }

@@ -17,7 +17,7 @@
     <button type="button" class="btn btn-block btn-primary btn-sm " v-on:click="save">保存</button>
     </span>
       <span class="col-xs-1 col-xs-push-5">
-    <button type="button" class="btn btn-block btn-primary btn-sm " v-on:click="">取消</button>
+    <button type="button" class="btn btn-block btn-primary btn-sm " v-on:click="cancel">取消</button>
     </span>
     </div>
 
@@ -44,16 +44,17 @@
 
       save:function () {
         var content = this.$refs.editor.getContent();
-        console.log(content)
         this.$http.post('/api/passage',{title:this.title,content:content}).then(function (response) {
           console.log(response)
+          var passage_id = response.body.passage.id;
+          document.location = '/#/passage/'+passage_id;
         },function (err) {
           console.log(err)
         })
       },
 
       cancel:function () {
-
+        window.history.go(-1)
       }
 
 

@@ -29,7 +29,7 @@
               <li v-if="is_login"><a href="#" >{{user.username}}</a></li>
               <li v-if="!is_login" data-toggle="modal" data-target="#login_box_modal" ><a>登录</a></li>
               <li v-if="is_login" v-on:click="logout"><a>注销</a></li>
-              <li v-if="!is_login"><a href="/register" >注册</a></li>
+              <li v-if="!is_login"><a href="/#/register" >注册</a></li>
             </ul>
 
 
@@ -165,7 +165,8 @@
               console.log("登出成功")
 
               //emit logout
-              this.$store.commit("logout")
+              this.$store.commit("logout");
+              window.location = "/#/"
             }
 
 
