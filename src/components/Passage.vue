@@ -18,7 +18,7 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
-            <a :href="'/#/passage/edit/'+$route.params.id" class="list-group-item" v-if="">更改</a>
+            <a :href="'/#/passage/edit/'+$route.params.id" class="list-group-item" v-if="show_edit">更改</a>
             <a href="#" class="list-group-item">...</a>
           </div>
         </div><!--/.sidebar-offcanvas-->
@@ -40,7 +40,7 @@
     },
     data:function () {
       return {
-          passage:null,
+          passage:{user_id:null},
           title:"文章"
       }
     },
@@ -61,6 +61,14 @@
       },function (err) {
 
       })
+    },
+    computed:{
+        show_edit:function () {
+            console.log("match",this.$store.state.user.id==this.passage.user_id)
+          console.log(1,this.$store.state.user);
+            console.log(2,this.passage)
+          return this.$store.state.user.id==this.passage.user_id && this.passage.user_id!=null
+        }
     }
 
   }

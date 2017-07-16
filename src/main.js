@@ -28,15 +28,19 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state:{
-    is_login:false
+    is_login:false,
+    user:{id:null,username:null}
   },
   mutations:{
-    login(state){
+    login(state,user){
       state.is_login=true;
+      state.user = user;
     },
     logout(state){
       state.is_login=false;
-    }
+      state.user = {id:null,username:null}
+    },
+
   }
 
 })

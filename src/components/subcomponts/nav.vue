@@ -133,12 +133,14 @@
             var result = response.body;
             if (result.login_success){
               this.user.username = result.user.username;
+
               $("#login_box_modal").modal("hide");
               console.log("登录成功");
 
 
               //emit login
-              this.$store.commit("login")
+              var user = response.body.user
+              this.$store.commit("login",user)
             }else{
                 if (hint){
                   this.alert_message=result.reason;
